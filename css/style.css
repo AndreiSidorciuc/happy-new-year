@@ -19,6 +19,8 @@ body {
 }
 
 .overlay {
+  padding: 0 15px;
+  margin: 0 auto;
   position: fixed;
   top: 0;
   left: 0;
