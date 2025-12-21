@@ -326,7 +326,7 @@
 
       // Падаючий сніг (частинки)
       const snowGeometry = new THREE.BufferGeometry();
-      const snowCount = 8000;
+      const snowCount = 9000;
       const snowPositions = new Float32Array(snowCount * 3);
 
       for (let i = 0; i < snowCount * 3; i += 3) {
@@ -343,7 +343,7 @@
         color: 0xaed6f1,
         size: 0.4,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.9,
       });
       const snow = new THREE.Points(snowGeometry, snowMaterial);
       scene.add(snow);
