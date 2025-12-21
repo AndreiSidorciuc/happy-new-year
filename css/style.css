@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Palatino Linotype", serif;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1a2332, #2d3e50, #1e3a52, #0f2537);
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.title {
+  font-size: 100px;
+  font-weight: bold;
+  color: #292928;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(41, 128, 185, 0.6), 0 5px 20px rgba(52, 73, 94, 0.5),
+    2px 2px 0px rgba(52, 152, 219, 0.4);
+  animation: crystallize 3s ease-in-out infinite, fadeInDown 1.5s ease-out;
+  margin-bottom: 30px;
+  letter-spacing: 6px;
+}
+
+.year {
+  font-size: 280px;
+  font-weight: bold;
+  background: linear-gradient(
+    135deg,
+    #ff6b6b 0%,
+    #ff8c42 25%,
+    #ffd93d 50%,
+    #ff6b6b 75%,
+    #ff4757 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite, float 4s ease-in-out infinite;
+  filter: drop-shadow(0 5px 15px rgba(255, 107, 107, 0.6));
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.message {
+  font-size: 32px;
+  color: #ffffff;
+  text-align: center;
+  max-width: 750px;
+  padding: 35px;
+  margin-top: 30px;
+  filter: drop-shadow(0 5px 15px rgb(0, 0, 0));
+  text-shadow: 0 0 20px rgba(158, 135, 2, 0.5);
+  background: linear-gradient(
+    135deg,
+    rgba(44, 62, 80, 0.5),
+    rgba(52, 73, 94, 0.5)
+  );
+  border-radius: 30px;
+  backdrop-filter: blur(12px);
+  border: 3px solid rgba(93, 173, 226, 0.4);
+  box-shadow: 0 8px 32px rgba(41, 128, 185, 0.4),
+    inset 0 0 20px rgba(52, 152, 219, 0.2);
+  animation: fadeInUp 2s ease-out 0.7s both;
+  line-height: 1.8;
+}
+
+.snowflake-icon {
+  display: inline-block;
+  font-size: 28px;
+  animation: rotate 4s linear infinite;
+  margin: 0 8px;
+}
+
+.name {
+  /* display: block;
+  font-size: 30px;
+  color: #000000;
+  font-weight: 900;
+ */
+  display: block;
+  padding: 20px;
+  font-size: 38px;
+  font-weight: bold;
+  background: linear-gradient(
+    135deg,
+    #f7d30b 0%,
+    #ff0404 25%,
+    #ffffff 50%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite, float 4s ease-in-out infinite;
+  filter: drop-shadow(0 5px 15px rgb(0, 0, 0));
+  text-shadow: 0 0 20px rgba(158, 135, 2, 0.5);
+}
+
+@keyframes crystallize {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(64, 156, 255, 0.8),
+      0 0 20px rgba(41, 128, 185, 0.6), 0 5px 20px rgba(52, 73, 94, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(93, 173, 226, 1),
+      0 0 40px rgba(52, 152, 219, 0.8), 0 5px 30px rgba(41, 128, 185, 0.7),
+      0 0 60px rgba(93, 173, 226, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.03);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 46px;
+  }
+  .year {
+    font-size: 92px;
+  }
+  .message {
+    font-size: 20px;
+    padding: 25px;
+  }
+}
