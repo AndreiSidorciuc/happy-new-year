@@ -33,6 +33,7 @@ body {
 }
 
 .title {
+  display: block;
   font-size: 100px;
   font-weight: bold;
   text-align: center;
@@ -106,6 +107,7 @@ body {
   /* text-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   line-height: 1.8;
   font-size: 40px;
+  letter-spacing: 6px;
 }
 
 .name {
