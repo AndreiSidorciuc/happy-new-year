@@ -40,7 +40,7 @@ body {
     0 0 20px rgba(41, 128, 185, 0.6), 0 5px 20px rgba(52, 73, 94, 0.5),
     2px 2px 0px rgba(52, 152, 219, 0.4);
   animation: crystallize 3s ease-in-out infinite, fadeInDown 1.5s ease-out;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
   letter-spacing: 6px;
 }
 
@@ -94,23 +94,31 @@ body {
   margin: 0 8px;
 }
 
+.wishes {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #030303;
+  text-align: center;
+  font-weight: bold;
+  max-width: 750px;
+  margin-top: 30px;
+  filter: drop-shadow(0 5px 15px rgb(0, 0, 0));
+  /* text-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+  line-height: 1.8;
+  font-size: 40px;
+}
+
 .name {
-  /* display: block;
-  font-size: 30px;
-  color: #000000;
-  font-weight: 900;
- */
   display: block;
-  padding: 20px;
-  font-size: 38px;
+  margin: 20px;
+  font-size: 40px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
     #f7d30b 0%,
     #ff0404 25%,
-    #ffffff 50%,
-    #ffffff 75%,
-    #ffffff 100%
+    #000000 50%,
+    #000000 75%,
+    #000000 100%
   );
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -118,7 +126,7 @@ body {
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite, float 4s ease-in-out infinite;
   filter: drop-shadow(0 5px 15px rgb(0, 0, 0));
-  text-shadow: 0 0 20px rgba(158, 135, 2, 0.5);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes crystallize {
