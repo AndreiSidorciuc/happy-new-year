@@ -1,3 +1,4 @@
+// Версія 1
 // const canvas = document.getElementById("canvas");
 // const scene = new THREE.Scene();
 // scene.fog = new THREE.Fog(0x1a2332, 50, 200);
@@ -16,25 +17,10 @@
 // renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.setPixelRatio(window.devicePixelRatio);
 
-// camera.position.set(0, 5, 50);
+// camera.position.set(0, -5, 50);
+// camera.lookAt(0, -10, 0);
 
-// // Створюємо крижаний кристал
-// function createCrystal(size, x, y, z) {
-//   const geometry = new THREE.OctahedronGeometry(size, 0);
-//   const material = new THREE.MeshPhongMaterial({
-//     color: 0x3498db,
-//     emissive: 0x1f618d,
-//     emissiveIntensity: 0.4,
-//     transparent: true,
-//     opacity: 0.7,
-//     shininess: 100,
-//   });
-//   const crystal = new THREE.Mesh(geometry, material);
-//   crystal.position.set(x, y, z);
-//   return crystal;
-// }
-
-// // Створюємо подарункові коробки замість кристалів
+// // Створюємо подарункові коробки
 // const gifts = [];
 // for (let i = 0; i < 30; i++) {
 //   const size = 1 + Math.random() * 2;
@@ -47,13 +33,7 @@
 //   // Основна коробка
 //   const boxGeometry = new THREE.BoxGeometry(size, size, size);
 //   const giftColors = [
-//     0xe74c3c, // Червоний
-//     0x3498db, // Синій
-//     0x2ecc71, // Зелений
-//     0xf39c12, // Помаранчевий
-//     0x9b59b6, // Фіолетовий
-//     0xe67e22, // Темно-помаранчевий
-//     0x1abc9c, // Бірюзовий
+//     0xe74c3c, 0x3498db, 0x2ecc71, 0xf39c12, 0x9b59b6, 0xe67e22, 0x1abc9c,
 //   ];
 //   const boxMaterial = new THREE.MeshPhongMaterial({
 //     color: giftColors[i % giftColors.length],
@@ -122,7 +102,7 @@
 //   scene.add(giftGroup);
 // }
 
-// // Падаючий сніг (частинки)
+// // Падаючий сніг
 // const snowGeometry = new THREE.BufferGeometry();
 // const snowCount = 8000;
 // const snowPositions = new Float32Array(snowCount * 3);
@@ -165,7 +145,7 @@
 //   trunk.position.y = 1.5;
 //   treeGroup.add(trunk);
 
-//   // Яруси хвої (3 рівні)
+//   // Яруси хвої
 //   const treeLevels = [
 //     { y: 3, radius: 2.5, height: 4 },
 //     { y: 5.5, radius: 2, height: 3.5 },
@@ -197,7 +177,7 @@
 //   star.position.y = 9.5;
 //   treeGroup.add(star);
 
-//   // Гірлянди на ялинці
+//   // Гірлянди
 //   const lightPositions = [
 //     { y: 3.5, radius: 2.2 },
 //     { y: 4.5, radius: 1.8 },
@@ -242,6 +222,20 @@
 //   scene.add(treeGroup);
 // }
 
+// // Створюємо землю під ялинками
+// const groundGeometry = new THREE.CircleGeometry(50, 64);
+// const groundMaterial = new THREE.MeshPhongMaterial({
+//   color: 0xe8f4f8,
+//   emissive: 0xb8d8e8,
+//   emissiveIntensity: 0.1,
+//   shininess: 30,
+//   side: THREE.DoubleSide,
+// });
+// const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+// ground.rotation.x = -Math.PI / 2;
+// ground.position.y = -10;
+// scene.add(ground);
+
 // // Освітлення
 // const ambientLight = new THREE.AmbientLight(0x34495e, 0.5);
 // scene.add(ambientLight);
@@ -273,12 +267,12 @@
 //     gift.bow.scale.set(1.5 * bowPulse, 0.8 * bowPulse, 1.5 * bowPulse);
 //   });
 
-//   // Падіння частинок снігу
+//   // // Падіння частинок снігу
 //   const positions = snow.geometry.attributes.position.array;
 //   for (let i = 1; i < positions.length; i += 3) {
-//     positions[i] -= 0.1;
+//     positions[i] -= 0.3;
 //     if (positions[i] < -20) {
-//       positions[i] = 80;
+//       positions[i] = 40;
 //     }
 //   }
 //   snow.geometry.attributes.position.needsUpdate = true;
@@ -333,6 +327,9 @@
 //   camera.position.y = 5 - y;
 // });
 
+//Версія 2
+//
+// Версія 3
 const canvas = document.getElementById("canvas");
 const scene = new THREE.Scene();
 scene.fog = new THREE.Fog(0x1a2332, 50, 200);
@@ -354,111 +351,93 @@ renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.set(0, -5, 50);
 camera.lookAt(0, -10, 0);
 
-// Створюємо подарункові коробки
-const gifts = [];
-for (let i = 0; i < 30; i++) {
-  const size = 1 + Math.random() * 2;
-  const x = (Math.random() - 0.5) * 100;
-  const y = (Math.random() - 0.5) * 60;
-  const z = (Math.random() - 0.5) * 100;
+// Падаючий сніг у формі сніжинок
+const snowflakes = [];
+const snowCount = 3000;
 
-  const giftGroup = new THREE.Group();
+// Створюємо текстуру сніжинки
+const canvas2d = document.createElement("canvas");
+canvas2d.width = 64;
+canvas2d.height = 64;
+const ctx = canvas2d.getContext("2d");
 
-  // Основна коробка
-  const boxGeometry = new THREE.BoxGeometry(size, size, size);
-  const giftColors = [
-    0xe74c3c, 0x3498db, 0x2ecc71, 0xf39c12, 0x9b59b6, 0xe67e22, 0x1abc9c,
-  ];
-  const boxMaterial = new THREE.MeshPhongMaterial({
-    color: giftColors[i % giftColors.length],
-    emissive: giftColors[i % giftColors.length],
-    emissiveIntensity: 0.2,
-    shininess: 80,
-  });
-  const box = new THREE.Mesh(boxGeometry, boxMaterial);
-  giftGroup.add(box);
+// Малюємо сніжинку
+ctx.fillStyle = "white";
+ctx.shadowBlur = 10;
+ctx.shadowColor = "white";
 
-  // Стрічка горизонтальна
-  const ribbonH = new THREE.BoxGeometry(size * 1.05, size * 0.12, size * 0.12);
-  const ribbonMaterial = new THREE.MeshPhongMaterial({
-    color: 0xffd700,
-    emissive: 0xffa500,
-    emissiveIntensity: 0.3,
-    shininess: 100,
-  });
-  const ribbonHMesh = new THREE.Mesh(ribbonH, ribbonMaterial);
-  ribbonHMesh.position.y = size * 0.25;
-  giftGroup.add(ribbonHMesh);
+// Центр сніжинки
+const centerX = 32;
+const centerY = 32;
 
-  // Стрічка вертикальна
-  const ribbonV = new THREE.BoxGeometry(size * 0.12, size * 1.05, size * 0.12);
-  const ribbonVMesh = new THREE.Mesh(ribbonV, ribbonMaterial.clone());
-  giftGroup.add(ribbonVMesh);
+// Малюємо 6 променів сніжинки
+for (let i = 0; i < 6; i++) {
+  const angle = (i / 6) * Math.PI * 2;
+  ctx.beginPath();
+  ctx.moveTo(centerX, centerY);
+  ctx.lineTo(centerX + Math.cos(angle) * 28, centerY + Math.sin(angle) * 28);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "white";
+  ctx.stroke();
 
-  // Бантик зверху
-  const bowGeometry = new THREE.SphereGeometry(size * 0.2, 8, 8);
-  const bowMaterial = new THREE.MeshPhongMaterial({
-    color: 0xffd700,
-    emissive: 0xffa500,
-    emissiveIntensity: 0.5,
-    shininess: 100,
-  });
-  const bow = new THREE.Mesh(bowGeometry, bowMaterial);
-  bow.position.y = size * 0.6;
-  bow.scale.set(1.5, 0.8, 1.5);
-  giftGroup.add(bow);
+  // Додаємо бічні гілочки
+  for (let j = 0; j < 2; j++) {
+    const branchDist = 10 + j * 10;
+    const branchX = centerX + Math.cos(angle) * branchDist;
+    const branchY = centerY + Math.sin(angle) * branchDist;
 
-  // Додаткові деталі бантика
-  for (let j = 0; j < 4; j++) {
-    const loopGeometry = new THREE.SphereGeometry(size * 0.15, 6, 6);
-    const loop = new THREE.Mesh(loopGeometry, bowMaterial.clone());
-    const angle = (j / 4) * Math.PI * 2;
-    loop.position.x = Math.cos(angle) * size * 0.25;
-    loop.position.y = size * 0.6;
-    loop.position.z = Math.sin(angle) * size * 0.25;
-    loop.scale.set(0.8, 1.2, 0.8);
-    giftGroup.add(loop);
+    ctx.beginPath();
+    ctx.moveTo(branchX, branchY);
+    ctx.lineTo(
+      branchX + Math.cos(angle + Math.PI / 4) * 6,
+      branchY + Math.sin(angle + Math.PI / 4) * 6
+    );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(branchX, branchY);
+    ctx.lineTo(
+      branchX + Math.cos(angle - Math.PI / 4) * 6,
+      branchY + Math.sin(angle - Math.PI / 4) * 6
+    );
+    ctx.stroke();
   }
+}
 
-  giftGroup.position.set(x, y, z);
-  giftGroup.rotation.set(
-    Math.random() * Math.PI,
-    Math.random() * Math.PI,
-    Math.random() * Math.PI
-  );
+// Центральний кружечок
+ctx.beginPath();
+ctx.arc(centerX, centerY, 3, 0, Math.PI * 2);
+ctx.fillStyle = "white";
+ctx.fill();
 
-  gifts.push({
-    group: giftGroup,
-    speed: 0.3 + Math.random() * 0.5,
-    rotationSpeed: (Math.random() - 0.5) * 0.02,
-    bow: bow,
+const snowflakeTexture = new THREE.CanvasTexture(canvas2d);
+
+// Створюємо окремі сніжинки
+for (let i = 0; i < snowCount; i++) {
+  const size = 0.3 + Math.random() * 0.5;
+  const snowflakeGeometry = new THREE.PlaneGeometry(size, size);
+  const snowflakeMaterial = new THREE.MeshBasicMaterial({
+    map: snowflakeTexture,
+    transparent: true,
+    opacity: 0.8 + Math.random() * 0.2,
+    depthWrite: false,
   });
-  scene.add(giftGroup);
+
+  const snowflake = new THREE.Mesh(snowflakeGeometry, snowflakeMaterial);
+  snowflake.position.x = (Math.random() - 0.5) * 200;
+  snowflake.position.y = Math.random() * 100;
+  snowflake.position.z = (Math.random() - 0.5) * 200;
+
+  snowflakes.push({
+    mesh: snowflake,
+    speed: 0.2 + Math.random() * 0.3,
+    rotationSpeed: (Math.random() - 0.5) * 0.02,
+    swingSpeed: Math.random() * 0.5,
+    swingAmount: Math.random() * 0.5,
+  });
+
+  scene.add(snowflake);
 }
-
-// Падаючий сніг
-const snowGeometry = new THREE.BufferGeometry();
-const snowCount = 8000;
-const snowPositions = new Float32Array(snowCount * 3);
-
-for (let i = 0; i < snowCount * 3; i += 3) {
-  snowPositions[i] = (Math.random() - 0.5) * 200;
-  snowPositions[i + 1] = Math.random() * 100;
-  snowPositions[i + 2] = (Math.random() - 0.5) * 200;
-}
-
-snowGeometry.setAttribute(
-  "position",
-  new THREE.BufferAttribute(snowPositions, 3)
-);
-const snowMaterial = new THREE.PointsMaterial({
-  color: 0xaed6f1,
-  size: 0.4,
-  transparent: true,
-  opacity: 0.9,
-});
-const snow = new THREE.Points(snowGeometry, snowMaterial);
-scene.add(snow);
 
 // Створюємо прекрасні ялинки
 const trees = [];
@@ -590,26 +569,25 @@ function animate() {
   requestAnimationFrame(animate);
   time += 0.01;
 
-  // Обертання подарункових коробок
-  gifts.forEach((gift) => {
-    gift.group.rotation.x += gift.rotationSpeed;
-    gift.group.rotation.y += gift.rotationSpeed * 1.5;
-    gift.group.position.y += Math.sin(time * gift.speed) * 0.02;
+  // Падіння сніжинок з обертанням та гойданням
+  snowflakes.forEach((snowflake) => {
+    snowflake.mesh.position.y -= snowflake.speed;
+    snowflake.mesh.rotation.z += snowflake.rotationSpeed;
 
-    // Пульсація бантика
-    const bowPulse = (Math.sin(time * 3 + gift.speed) + 1) * 0.1 + 0.9;
-    gift.bow.scale.set(1.5 * bowPulse, 0.8 * bowPulse, 1.5 * bowPulse);
-  });
+    // Гойдання вліво-вправо
+    snowflake.mesh.position.x +=
+      Math.sin(time * snowflake.swingSpeed) * snowflake.swingAmount * 0.01;
 
-  // Падіння частинок снігу
-  const positions = snow.geometry.attributes.position.array;
-  for (let i = 1; i < positions.length; i += 3) {
-    positions[i] -= 0.1;
-    if (positions[i] < -20) {
-      positions[i] = 80;
+    // Якщо сніжинка впала - піднімаємо вгору
+    if (snowflake.mesh.position.y < -20) {
+      snowflake.mesh.position.y = 80;
+      snowflake.mesh.position.x = (Math.random() - 0.5) * 200;
+      snowflake.mesh.position.z = (Math.random() - 0.5) * 200;
     }
-  }
-  snow.geometry.attributes.position.needsUpdate = true;
+
+    // Сніжинки завжди дивляться на камеру
+    snowflake.mesh.lookAt(camera.position);
+  });
 
   // Пульсація ялинок
   trees.forEach((tree, i) => {

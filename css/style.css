@@ -7,7 +7,8 @@
 body {
   font-family: "Palatino Linotype", serif;
   overflow: hidden;
-  background: linear-gradient(180deg, #1a2332, #2d3e50, #1e3a52, #0f2537);
+  /* background: linear-gradient(180deg, #000000, #000000, #000000, #000000); */
+  background-color: #1a2332;
 }
 
 #canvas {
@@ -39,7 +40,7 @@ body {
   font-size: 100px;
   font-weight: bold;
   text-align: center;
-  color: #292928;
+  color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
     0 0 20px rgba(41, 128, 185, 0.6), 0 5px 20px rgba(52, 73, 94, 0.5),
     2px 2px 0px rgba(52, 152, 219, 0.4);
@@ -100,7 +101,7 @@ body {
 
 .wishes {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: #030303;
+  color: #ffffff;
   text-align: center;
   font-weight: bold;
   max-width: 750px;
@@ -115,15 +116,16 @@ body {
 .name {
   display: block;
   margin-bottom: 30px;
+  margin-top: 20px;
   font-size: 40px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
-    #f7d30b 0%,
-    #ff0404 25%,
-    #000000 50%,
-    #000000 75%,
-    #000000 100%
+    #000000 0%,
+    #000000 25%,
+    #ff5d5d 50%,
+    #ffffff 75%,
+    #f70202 100%
   );
   background-size: 200% 200%;
   -webkit-background-clip: text;
