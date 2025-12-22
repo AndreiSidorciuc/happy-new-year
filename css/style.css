@@ -7,9 +7,10 @@
 body {
   font-family: "Palatino Linotype", serif;
   overflow: hidden;
-  /* background: linear-gradient(180deg, #000000, #000000, #000000, #000000); */
-  background-color: #1a2332;
-}
+  /* background: linear-gradient(100deg, #000000, #000000, #000000, #000000); */
+  background-color: #000000;
+  /* background-image: url("https://kidpassage.com/images/publications/kuda-poehat-na-novyiy-god-s-detmi/678_13fe162b08eb3d88166ce0105fffe669.jpg");
+} */
 
 #canvas {
   position: fixed;
