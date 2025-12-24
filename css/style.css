@@ -50,7 +50,7 @@ body {
 } */
 
 .year {
-  font-size: 282px;
+  font-size: 300px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
@@ -70,7 +70,7 @@ body {
 }
 
 .message {
-  font-size: 40px;
+  font-size: 38px;
   color: #ffffff;
   text-align: center;
   max-width: 750px;
