@@ -10,7 +10,6 @@ body {
   /* background: linear-gradient(180deg, #0a0e1a, #1a1f2e, #0f1419, #050810); */
   background-image: url("https://media.istockphoto.com/id/1283307885/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/stippled-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80-%D1%82%D0%B5%D0%BA%D1%81%D1%82%D1%83%D1%80%D1%8B-%D1%84%D0%BE%D0%BD-%D0%B1%D0%B5%D0%BB%D1%8B%D0%B5-%D1%82%D0%BE%D1%87%D0%BA%D0%B8-%D0%BD%D0%B0-%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%BC.jpg?s=612x612&w=0&k=20&c=JBmzHJmS12CK6nvi05MY57kDIsYrqgjgEUpFGmQrEQ0=");
 }
-
 #canvas {
   position: fixed;
   top: 0;
@@ -38,7 +37,7 @@ body {
 
 .title {
   display: block;
-  font-size: 120px;
+  font-size: 100px;
   font-weight: bold;
   text-align: center;
   color: #ffffff;
@@ -50,7 +49,7 @@ body {
 }
 
 .year {
-  font-size: 290px;
+  font-size: 280px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
@@ -104,7 +103,7 @@ body {
   filter: drop-shadow(0 5px 15px rgb(0, 0, 0));
   /* text-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   line-height: 1.8;
-  font-size: 50px;
+  font-size: 40px;
   letter-spacing: 6px;
 }
 
@@ -112,7 +111,7 @@ body {
   display: block;
   margin-bottom: 30px;
   margin-top: 20px;
-  font-size: 55px;
+  font-size: 40px;
   font-weight: bold;
   background: linear-gradient(
     135deg,
